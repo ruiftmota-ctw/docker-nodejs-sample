@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
   build-node:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       -
         name: Set up QEMU
