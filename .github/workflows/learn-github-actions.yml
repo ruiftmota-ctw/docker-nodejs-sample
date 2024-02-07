@@ -10,9 +10,18 @@ jobs:
   build-node:
     runs-on: self-hosted
     steps:
-      
+      - name: checkout sonarqube
+        uses: actions/checkout@v4
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: false
           tags: user/app:latest
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v2.0.1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      
