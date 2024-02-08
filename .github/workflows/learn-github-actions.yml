@@ -43,6 +43,10 @@ jobs:
         with:
           push: false
           tags: user/app:latest
+
+      - name: Set environment variable
+        id: set_env
+        run: echo "::set-output name=environment::development"  
       - name: Print Environment
         run: echo "Deploying to ${{ steps.set_env.outputs.environment }}"
 
@@ -60,6 +64,11 @@ jobs:
         with:
           push: false
           tags: user/app:latest
+
+
+      - name: Set environment variable
+        id: set_env
+        run: echo "::set-output name=environment::development"  
       - name: Print Environment
         run: echo "Deploying to ${{ steps.set_env.outputs.environment }}"
 
@@ -78,6 +87,10 @@ jobs:
           push: false
           tags: user/app:latest
 
+
+      - name: Set environment variable
+        id: set_env
+        run: echo "::set-output name=environment::development"
       - name: Print Environment
         run: echo "Deploying to ${{ steps.set_env.outputs.environment }}"
 
