@@ -50,6 +50,13 @@ jobs:
       - name: Print Environment
         run: echo "Deploying to ${{ steps.set_env.outputs.environment }}"
 
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+
   deploy_to_integration:
     runs-on: self-hosted
     environment: int
@@ -94,11 +101,7 @@ jobs:
       - name: Print Environment
         run: echo "Deploying to ${{ steps.set_env.outputs.environment }}"
 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      
 
 
 
