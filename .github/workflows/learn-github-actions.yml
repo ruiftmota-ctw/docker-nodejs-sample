@@ -37,13 +37,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      # Add steps for deployment to development environment
-      - name: Deploy to Development
-        uses: docker/build-push-action@v5
-        with:
-          push: false
-          tags: user/app:latest
-
       - name: Set environment variable
         id: set_env
         run: echo "::set-output name=environment::development"  
@@ -57,6 +50,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           #password: ${{ secrets.CTW_PASSWORD }}
       
+      # Add steps for deployment to development environment
+      - name: Deploy to Development
+        uses: docker/build-push-action@v5
+        with:
+          push: false
+          tags: user/app:latest
+
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -105,7 +105,7 @@ jobs:
   deploy_to_production:
     runs-on: self-hosted
     environment: prod
-    # needs: deploy_to_integration
+    needs: deploy_to_integration
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
