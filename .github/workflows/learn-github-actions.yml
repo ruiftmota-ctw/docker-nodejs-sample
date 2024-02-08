@@ -31,7 +31,7 @@ jobs:
 
 
   deploy_to_development:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: dev
     steps:
       - name: Checkout code
@@ -51,7 +51,7 @@ jobs:
         run: echo "Deploying to ${{ steps.set_env.outputs.environment }}"
 
   deploy_to_integration:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: int
     needs: deploy_to_development
     steps:
@@ -73,7 +73,7 @@ jobs:
         run: echo "Deploying to ${{ steps.set_env.outputs.environment }}"
 
   deploy_to_production:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: prod
     # needs: deploy_to_integration
     steps:
