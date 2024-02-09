@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ruifilipemota110/app:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/app:latest
 
 
       # - name: Extract metadata (tags, labels) for Docker
